@@ -1,77 +1,52 @@
 User Management System with OTP Verification
 This project is a User Management System that allows users to register, verify their identity using OTP, and store their details in a database. The system sends an OTP to the user's mobile number and a registration confirmation email to their email address. It also captures the user's location and sends it via SMS.
-
-Features
-User Registration:
-
-Users can register by providing their name, email, phone number, and location.
-
-OTP is sent to the user's mobile number for verification.
-
-Registration confirmation email is sent to the user's email address.
-
-OTP Verification:
-
-Users must enter the OTP received on their mobile number to complete the registration process.
-
-Location Capture:
-
-The system captures the user's location (latitude and longitude) during registration.
-
-The location is sent via SMS to a predefined number.
-
-User Details Storage:
-
-All user details (name, email, phone number, location) are stored in a MySQL database.
-
-Different User Details:
-
-Only the location is sent via SMS for different users.
-
+________________________________________
+Key Features
+1.	User Registration:
+o	Users can register by providing their name, email, phone number, and location.
+o	OTP is sent to the user's mobile number for verification.
+o	Registration confirmation email is sent to the user's email address.
+2.	OTP Verification:
+o	Users must enter the OTP received on their mobile number to complete the registration process.
+3.	Location Capture:
+o	The system captures the user's location (latitude and longitude) during registration.
+o	The location is sent via SMS to a predefined number.
+4.	User Details Storage:
+o	All user details (name, email, phone number, location) are stored in a MySQL database.
+5.	Different User Details:
+o	Only the location is sent via SMS for different users.
+________________________________________
 Technologies Used
-Frontend: HTML, CSS, JavaScript
-
-Backend: Spring Boot 4.0.1
-
-Templating Engine: Thymeleaf
-
-Database: MySQL
-
-APIs: SMS Gateway (e.g., Twilio), Email Service (e.g., JavaMail)
-
+•	Frontend: HTML, CSS, JavaScript
+•	Backend: Spring Boot 4.0.1
+•	Templating Engine: Thymeleaf
+•	Database: MySQL
+•	APIs: SMS Gateway (e.g., Twilio), Email Service (e.g., JavaMail)
+________________________________________
 Setup Instructions
 Prerequisites
-Java 17 or higher
+•	Java 17 or higher
+•	MySQL Server
+•	Maven
+•	Twilio API credentials (for SMS)
+•	Email service credentials (for sending emails)
 
-MySQL Server
-
-Maven
-
-Twilio API credentials (for SMS)
-
-Email service credentials (for sending emails)
 
 Steps
-Clone the Repository:
-
+1.	Clone the Repository:
 bash
 Copy
 git clone https://github.com/your-username/user-management-system.git
-Configure the Database:
-
-Create a MySQL database named user_management.
-
-Update the application.properties file with your database credentials:
-
+2.	Configure the Database:
+o	Create a MySQL database named user_management.
+o	Update the application.properties file with your database credentials:
 properties
 Copy
 spring.datasource.url=jdbc:mysql://localhost:3306/user_management
 spring.datasource.username=your-username
 spring.datasource.password=your-password
-Configure SMS and Email Services:
-
-Update the application.properties file with your Twilio and email service credentials:
-
+3.	Configure SMS and Email Services:
+o	Update the application.properties file with your Twilio and email service credentials:
 properties
 Copy
 twilio.account.sid=your-twilio-sid
@@ -84,29 +59,24 @@ spring.mail.username=your-email@gmail.com
 spring.mail.password=your-email-password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
-Run the Application:
-
+4.	Run the Application:
 bash
 Copy
 mvn spring-boot:run
-Access the Application:
-
-Open your browser and go to http://localhost:8080.
-
+5.	Access the Application:
+o	Open your browser and go to http://localhost:8080.
+________________________________________
 Screenshots
-Registration Page
+ 
 User Registration Page
-
-OTP Verification
+ 
 OTP Verification Page
-
+________________________________________
 API Endpoints
-POST /register: Register a new user.
-
-POST /verify-otp: Verify the OTP.
-
-GET /users: Retrieve all registered users.
-
+•	POST /register: Register a new user.
+•	POST /verify-otp: Verify the OTP.
+•	GET /users: Retrieve all registered users.
+________________________________________
 Code Structure
 Copy
 src/
@@ -135,45 +105,22 @@ src/
 │   │   └── application.properties
 │   └── webapp/
 └── test/
+________________________________________
 How It Works
-User Registration:
-
-The user fills out the registration form (name, email, phone number, location).
-
-The system sends an OTP to the user's mobile number and a confirmation email to their email address.
-
-OTP Verification:
-
-The user enters the OTP received on their mobile number.
-
-If the OTP is valid, the user is registered, and their details are stored in the database.
-
-Location Capture:
-
-The user's location (latitude and longitude) is captured using JavaScript's Geolocation API.
-
-The location is sent via SMS to a predefined number.
-
+1.	User Registration:
+o	The user fills out the registration form (name, email, phone number, location).
+o	The system sends an OTP to the user's mobile number and a confirmation email to their email address.
+2.	OTP Verification:
+o	The user enters the OTP received on their mobile number.
+o	If the OTP is valid, the user is registered, and their details are stored in the database.
+3.	Location Capture:
+o	The user's location (latitude and longitude) is captured using JavaScript's Geolocation API.
+o	The location is sent via SMS to a predefined number.
+________________________________________
 Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
-
-Fork the repository.
-
-Create a new branch for your feature or bugfix.
-
-Commit your changes.
-
-Submit a pull request.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-If you have any questions or suggestions, feel free to reach out:
-
-Name: Your Name
-
-Email: your.email@example.com
-
-GitHub: your-username
+1.	Fork the repository.
+2.	Create a new branch for your feature or bugfix.
+3.	Commit your changes.
+4.	Submit a pull request.
 
