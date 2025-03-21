@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Mantis HTML Admin Template | Mantis Bootstrap 5 Admin Template</title>
+  <!-- [Meta] -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+  <!-- Bootstrap CSS (for the navbar and other styling) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Inline CSS for Backgrounds -->
+  <style>
+    /* Apply Linear Gradient to the Body Background */
+    body.landing-page {
+      background: linear-gradient(329.36deg, rgb(0, 0, 0) 14.79%, rgb(64, 0, 64) 64%);
+      background-size: cover;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+      padding: 15px 0;
+      z-index: 5;
+    }
+
+    .navbar .navbar-brand {
+      color: white;
+      font-family: "Public Sans", sans-serif;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    /* Title Styling */
+    .title {
+      font-family: "Public Sans", sans-serif;
+      width: 800px;
+      font-size: 2.5em;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Button Styling with Custom Gradient and Colors */
+    .btn-primary {
+      font-family: "Public Sans", sans-serif;
+      text-decoration: none;
+      background-color: rgb(128, 0, 255);
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px;
+      position: relative;
+      z-index: 3;
+      border-radius: 5px;
+      font-weight: bolder;
+    }
+
+    /* Button Hover Effects */
+    .btn-primary:hover {
+      background-color: black;
+      color: white;
+    }
+
+    /* Button Active Effects */
+    .btn-primary:active {
+      background-color: var(--bs-btn-active-bg);
+      border-color: var(--bs-btn-active-border-color);
+      color: var(--bs-btn-active-color);
+      box-shadow: var(--bs-btn-active-shadow);
+    }
+
+    /* Optional: Add button focus effect */
+    .btn-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(59, 161, 255, 0.5);
+    }
+	#a{
+		background-image: url('images/bank12.jpeg');
+	}
+  </style>
+</head>
+
+<body class="landing-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a id="a" class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto" style="font-weight: bolder;">
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        <!--  <li class="nav-item">
+            <a class="nav-link" href="/getstarted">Get Started</a>
+          </li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Centered Title -->
+  <div class="title">
+    A Secure Two-Factor Authentication Key Exchange Scheme
+  </div>
+
+  <!-- Register, Login, and Get Started Buttons -->
+  <div>
+    
+    <a href="/getstarted" class="btn-primary">Get Started</a>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js (for the navbar) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

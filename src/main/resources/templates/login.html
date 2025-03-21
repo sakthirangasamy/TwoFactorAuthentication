@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Banking Login</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <style>
+        /* Custom Styles for Banking Application */
+		body {
+		           background-color: #f0f4f8; /* Light blue background */
+		           font-family: 'Roboto', sans-serif;
+		           display: flex;
+		           justify-content: center;
+		           align-items: center;
+		           height: 100vh;
+		           margin: 0;
+		       }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 2; /* Ensure the form appears above the background */
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 3; /* Ensure the card content is above the background */
+        }
+
+        .card-header {
+            background-color: #007bff; /* Banking blue */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-header h4 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-header img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .form-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .text-center a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        .secure-login {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+
+        .secure-login i {
+            color: #28a745; /* Green for security */
+            margin-right: 5px;
+        }
+
+        .go-back-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+
+        .go-back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Bank Logo"> <!-- Banking logo -->
+                <h4>Banking Login</h4>
+            </div>
+            <div class="card-body">
+                <!-- Display error message if credentials are invalid -->
+                <div th:if="${message}" class="alert alert-success" role="alert">
+                    <span th:text="${message}"></span>
+                </div>
+                <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+
+                <form th:action="@{/login}" method="post" onsubmit="getLocation(event)">
+                    <!-- Username Input Field -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="username">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" required placeholder="Enter Username" />
+                    </div><br>
+
+                    <!-- Password Input Field -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" required placeholder="Enter Password" />
+                    </div>
+
+                    <!-- Secure Login Message -->
+                    <div class="secure-login">
+                        <i class="fas fa-lock"></i> Secure Login
+                    </div><br>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+
+                <p class="mt-4 text-center">
+                    Don't have an account? <a href="/register" class="text-primary font-weight-bold">Sign Up</a>
+                </p>
+            </div>
+            <!-- Go Back Button -->
+            <div class="text-center mt-3">
+                <button onclick="goBack()" class="btn go-back-btn">Go Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS files for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // JavaScript function to go back to the previous page or home if no history
+        function goBack() {
+            if (document.referrer === '') {
+                window.location.href = '/'; // Redirect to home page if no history exists
+            } else {
+                window.history.back(); // Otherwise go back to the previous page
+            }
+        }
+
+        // Function to get the user's location
+        function getLocation(event) {
+            event.preventDefault(); // Prevent form submission
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+
+                        // Add the location data to the form and submit
+                        const form = event.target;
+                        const latitudeField = document.createElement("input");
+                        latitudeField.type = "hidden";
+                        latitudeField.name = "latitude";
+                        latitudeField.value = latitude;
+
+                        const longitudeField = document.createElement("input");
+                        longitudeField.type = "hidden";
+                        longitudeField.name = "longitude";
+                        longitudeField.value = longitude;
+
+                        form.appendChild(latitudeField);
+                        form.appendChild(longitudeField);
+
+                        form.submit(); // Submit the form after appending the data
+                    },
+                    (error) => {
+                        console.error("Error getting location: ", error);
+                        alert("Unable to retrieve your location. Please enable location services.");
+                        // Fallback: Submit the form without location data
+                        event.target.submit();
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                // Fallback: Submit the form without location data
+                event.target.submit();
+            }
+        }
+    </script>
+</body>
+
+</html>

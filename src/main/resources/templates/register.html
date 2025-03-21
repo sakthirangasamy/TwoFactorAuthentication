@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>User Registration</title>
+	<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
+	<style>
+		/* Custom Styles */
+		body {
+			background-color: #f7f8fa;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.container {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.card {
+			height: 630px;
+			/* Increased height to accommodate new fields */
+			border-radius: 15px;
+			max-width: 400px;
+			width: 100%;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		}
+
+		.card-header {
+			background: linear-gradient(45deg, rgb(128, 0, 255), #0056b3);
+			color: white;
+			height: 70px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 15px 15px 0 0;
+		}
+
+		.card-body {
+			height: 640px;
+			/* Increased height to accommodate new fields */
+			padding: 40px;
+			background-color: #ffffff;
+		}
+
+		.form-label {
+			margin-inline-end: 10px;
+			font-size: 1rem;
+			font-weight: 600;
+			margin-left: 10px;
+			color: #495057;
+		}
+
+		.form-control {
+			border: 1px solid #ced4da;
+			border-radius: 4px;
+			padding: 10px;
+			font-size: 15px;
+			transition: border-color 0.3s, box-shadow 0.3s;
+		}
+
+		.form-control:focus {
+			border-color: #007bff;
+			box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+		}
+
+		.btn {
+			width: 200px;
+			border-radius: 10px;
+			padding: 12px;
+			font-size: 1rem;
+			transition: background-color 0.3s, transform 0.2s;
+		}
+
+		.btn.bg-gradient-primary {
+			background: linear-gradient(45deg, #007bff, #0056b3);
+			border: none;
+		}
+
+		.btn.bg-gradient-primary:hover {
+			background: linear-gradient(45deg, #0056b3, #007bff);
+			transform: translateY(-2px);
+		}
+
+		.text-center a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		body {
+			background: linear-gradient(329.36deg, rgb(0, 0, 0) 14.79%, rgb(64, 0, 64) 64%);
+			background-size: cover;
+			background-attachment: fixed;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+			position: relative;
+		}
+
+		.custom-swal-popup {
+			width: 400px;
+			height: 300px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container d-flex justify-content-center align-items-center min-vh-100">
+			<!-- Card with Registration Form -->
+			<div class="card">
+				<!-- Card Header -->
+				<div class="card-header">
+					<h4 class="font-weight-bolder mb-0 text-white">Sign Up</h4>
+				</div>
+				<!-- Card Body -->
+				<div class="card-body">
+					<!-- Form to Fetch Coordinates -->
+					<form th:action="@{/fetchCoordinates}" method="post">
+						<!-- Location Dropdown -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="location">Location:</label>
+							<div class="d-flex align-items-center">
+								<select id="location" name="location" class="form-control" required>
+									<option value="" disabled selected>Select Location</option>
+									<option th:each="location : ${locations}" th:value="${location.name}"
+										th:text="${location.name}"></option>
+								</select>
+							</div>
+						</div><br>
+
+						<!-- Submit Button to Fetch Coordinates -->
+						<button type="submit" class="btn btn-secondary">Fetch Coordinates</button>
+					</form>
+<br>
+					<!-- Form for User Registration -->
+					<form th:action="@{/register}" th:object="${user}" method="post" class="text-start">
+						<!-- Username Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="username">Username:</label>
+							<input type="text" id="username" th:field="*{username}" name="username" class="form-control"
+								required placeholder="Enter Username" />
+						</div><br>
+
+						<!-- Email Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="email">Email ID :</label>
+							<input type="email" id="email" th:field="*{email}" name="email" class="form-control" required
+								placeholder="Enter Email" />
+						</div><br>
+
+						<!-- Password Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="password">Password:</label>
+							<input type="password" id="password" th:field="*{password}" name="password" class="form-control"
+								required placeholder="Enter Password" />
+						</div><br>
+
+						<!-- Contact Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="contact">Contact :</label>
+							<input type="text" id="contact" th:field="*{contact}" name="contact" class="form-control"
+								required placeholder="Enter Phone Number" />
+						</div><br>
+						<!-- Location Input Field -->
+						<div class="form-group mb-3">
+						    <label class="form-label" for="location">Location:</label>
+						    <input type="text" id="location" name="location" class="form-control" th:value="${location}"
+						        placeholder="Location" readonly />
+						</div><br>
+						<!-- Latitude Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="latitude">Latitude:</label>
+							<input type="text" id="latitude" name="latitude" class="form-control" th:value="${latitude}"
+								placeholder="Latitude" readonly />
+						</div><br>
+
+						<!-- Longitude Input Field -->
+						<div class="form-group mb-3">
+							<label class="form-label" for="longitude">Longitude:</label>
+							<input type="text" id="longitude" name="longitude" class="form-control" th:value="${longitude}"
+								placeholder="Longitude" readonly />
+						</div><br>
+
+						<!-- Submit Button -->
+						<div class="text-center">
+							<button type="submit" class="btn bg-gradient-primary w-100 my-4">Sign Up</button>
+						</div><br>
+					</form>
+
+					<!-- Link to Sign In -->
+					<p class="mt-4 text-center">
+						Already have an account? <a href="/login" class="text-primary font-weight-bold">Sign In</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// Fetch user's current location using Geolocation API
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(
+						function (position) {
+							// Populate latitude and longitude fields
+							document.getElementById("latitude").value = position.coords.latitude;
+							document.getElementById("longitude").value = position.coords.longitude;
+						},
+						function (error) {
+							// Handle errors
+							console.error("Error fetching location: ", error);
+							switch (error.code) {
+								case error.PERMISSION_DENIED:
+									alert("Location permission denied. Please enable location access in your browser settings.");
+									break;
+								case error.POSITION_UNAVAILABLE:
+									alert("Location information is unavailable.");
+									break;
+								case error.TIMEOUT:
+									alert("The request to get user location timed out.");
+									break;
+								default:
+									alert("An unknown error occurred while fetching location.");
+							}
+						}
+					);
+				} else {
+					alert("Geolocation is not supported by your browser. Please enter latitude and longitude manually.");
+				}
+			});
+		</script>
+
+	<!-- Show SweetAlert for username already exists -->
+	<script th:if="${usernameExists}">
+		document.addEventListener("DOMContentLoaded", function () {
+			Swal.fire({
+				title: 'Error!',
+				text: 'This username is already taken. Please choose another one.',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				customClass: {
+					popup: 'custom-swal-popup' // Apply custom class
+				}
+			});
+		});
+	</script>
+
+	<!-- Show SweetAlert for successful registration -->
+	<script th:if="${registrationSuccess}">
+		document.addEventListener("DOMContentLoaded", function () {
+			Swal.fire({
+				title: 'Success!',
+				text: 'User registered successfully!',
+				icon: 'success',
+				confirmButtonText: 'OK',
+				customClass: {
+					popup: 'custom-swal-popup' // Apply custom class
+				}
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/login"; // Redirect to login page after confirmation
+				}
+			});
+		});
+	</script>
+
+	<!-- JS files for Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
